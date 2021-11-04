@@ -24,7 +24,7 @@ public class Character{
 	public void combat(Enemy e){
 		e.setHealth(e.getHealth()-this.getInventory().getEquippedWeapon().getStrength());
 		//System.out.println("you attack the enemy for " + this.getInventory().getEquippedWeapon().getStrength()+" damage.");
-		if (e.getHealth<=0){
+		if (e.getHealth()<=0){
 		e.die();
 		}
 		else{

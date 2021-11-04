@@ -14,36 +14,36 @@ public class Enemy{
 		this.type=t;
 		this.damage=d;
 		this.name=n;
-		this position = p;
-		canMove=true
+		this.position = p;
+		canMove=true;
 	}
 	public int getHealth(){
-		return this.health();
+		return this.health;
 	}
 	public void setHealth(int h){
-		this.health=h
+		this.health=h;
 	}
 	public int getDamage(){
 		return this.damage;
 	}
 	public int getPosition(){
-		return this.position()
+		return this.position;
 	}
 	public void move(){
-		
+		//instantiate random, implement random movement
 		if (canMove==true)
 		{
-			int mov = 
+			int mov = 0;
 		}
 	}
-	public String getName();{
-		return this.name()
+	public String getName(){
+		return this.name;
 	}
 	public void die()
 	{
 		numdead++;
-		canMove=false
+		this.canMove=false;
 		System.out.println("you have slain the " +this.type+ ", "+ this.getName()+"!");
-		this.position=0//placeholder, was thinking of putting it in a spot where it can say what weve slain
+		this.position=0;//placeholder, was thinking of putting it in a spot where it can say what weve slain
 	}
 }	
