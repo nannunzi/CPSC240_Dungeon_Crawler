@@ -8,6 +8,7 @@ public class Enemy{
 	private int position;
 	private static int numdead=0;
 	private boolean canMove;
+	public static Random rng;
 
 	public Enemy(EnemyType t, int h, int d, String n, int p){
 		this.health=h;
@@ -16,6 +17,7 @@ public class Enemy{
 		this.name=n;
 		this.position = p;
 		canMove=true;
+		this.rng= new Random();
 	}
 	public int getHealth(){
 		return this.health;
@@ -29,12 +31,27 @@ public class Enemy{
 	public int getPosition(){
 		return this.position;
 	}
-	public void move(){
+	public String  move(){
 		//instantiate random, implement random movement
+		String ret = " ";
 		if (canMove==true)
 		{
-			int mov = 0;
+			double opt = rng.nextDouble();	
+			if (opt<.25)
+			{
+				ret="w";
+			}
+			else if (opt<.5){
+				ret="a";
+			}
+			else if (opt<.75){
+				ret = "s";
+			}
+			else {
+				ret = "d";
+			}
 		}
+		return ret;
 	}
 	public String getName(){
 		return this.name;
