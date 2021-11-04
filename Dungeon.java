@@ -47,16 +47,15 @@ public class Dungeon{
                 System.out.println(map);
         }
         public void  Move(String input) throws IllegalMovmentException{
-                if(input == "w"){
-			System.out.println(map.substring(charPosition));
-			if(map.substring(0, charPosition) == "-"){
-                                throw new IllegalMovmentException();
-
+		if(input == "w"){
+			if(map.substring(0, charPosition-100) == "-"){
+                                 throw new IllegalMovmentException();
                         }else{
-				charPosition-=100;
+                                charPosition-=100;
                                 map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
                                 map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
-                                oldCharPosition = charPosition;}
+                                oldCharPosition = charPosition;
+			}
 		}if(input == "a"){
                         if(map.substring(0, charPosition-1) == "|"){
                                  throw new IllegalMovmentException();
@@ -78,7 +77,7 @@ public class Dungeon{
                                 oldCharPosition = charPosition;
 			}
 		}if(input == "d"){
-                        if(map.substring(0, charPosition+1) == "|"){
+                       if(map.substring(0, charPosition+1) == "|"){
 				 throw new IllegalMovmentException();
 				
                         }else{
@@ -89,7 +88,9 @@ public class Dungeon{
 
                         }
 
-                }
+                }else{
+			System.out.println("error");
+		}
         }
 }
 
