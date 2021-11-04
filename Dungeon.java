@@ -47,12 +47,12 @@ public class Dungeon{
                 System.out.println(map);
         }
         public void  Move(String input) throws IllegalMovmentException{
-		System.out.println("above : "+ map.substring(charPosition-101, charPosition-100));
-		System.out.println("left : " + map.substring(charPosition-2, charPosition-1));
-		System.out.println("right : " +map.substring(charPosition, charPosition+1));
-		System.out.println("down : " +map.substring(charPosition+99, charPosition+100));
-		if(input == "w"){
-			if(map.substring(charPosition-101, charPosition-100) == "-"){
+		System.out.println("above : "+ map.substring(charPosition-100, charPosition-99));
+		System.out.println("left : " + map.substring(charPosition-1, charPosition));
+		System.out.println("right : " +map.substring(charPosition+1, charPosition+2));
+		System.out.println("down : " +map.substring(charPosition+100, charPosition+101));
+		if(input.equalsIgnoreCase("w")){
+			if(map.substring(charPosition-100, charPosition-99) == "-"){
                                  throw new IllegalMovmentException();
                         }else{
                                 charPosition-=100;
@@ -60,8 +60,9 @@ public class Dungeon{
                                 map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
                                 oldCharPosition = charPosition;
 			}
-		}if(input == "a"){
-                        if(map.substring(charPosition-2, charPosition-1) == "|"){
+		}
+		else if(input.equalsIgnoreCase("a")){
+                        if(map.substring(charPosition-1, charPosition) == "|"){
                                  throw new IllegalMovmentException();
 				
                        	}else{
@@ -70,9 +71,10 @@ public class Dungeon{
                                 map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
                                 oldCharPosition = charPosition;
 				}
-		}if(input == "s"){
+		}
+		else if(input.equalsIgnoreCase("s")){
                         
-                        if(map.substring(charPosition+99, charPosition+100) == "-"){
+                        if(map.substring(charPosition+100, charPosition+101) == "-"){
                                  throw new IllegalMovmentException();	
                         }else{
 				charPosition+=100;
@@ -80,7 +82,8 @@ public class Dungeon{
                                 map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
                                 oldCharPosition = charPosition;
 			}
-		}if(input == "d"){
+		}
+		else if(input.equalsIgnoreCase("d")){
                        if(map.substring(charPosition, charPosition+1) == "|"){
 				 throw new IllegalMovmentException();
 				
