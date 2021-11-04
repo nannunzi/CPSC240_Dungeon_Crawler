@@ -4,8 +4,7 @@ public class Dungeon{
         int charPosition = 607;
         int oldCharPosition = 607;
         String playerMarker = "@";
-
-        //Map Key: 
+        //Map Key
         //@ = player
         //? = Item
         //! = Enemy
@@ -42,18 +41,16 @@ public class Dungeon{
                 "|                                |---|          |--------|                                        |\n"+
                 "|                                |---|?         |--------|                                        |\n"+
                 "---------------------------------------------------------------------------------------------------";
-        public void Print(){
+        char control = map.charAt(103);
+	char test;
+	public void Print(){
                 System.out.println(map);
         }
-        public void  Move(String input) throws IllegalMovmentException{
-		System.out.println("above: w"+ map.substring(charPosition-100, charPosition-100));
-		System.out.println("left: a" + map.substring(charPosition-1, charPosition));
-		System.out.println("right: d" +map.substring(charPosition+1, charPosition+1));
-		System.out.println("down: s" +map.substring(charPosition+100, charPosition+100));
-		
+        public void  Move(String input) throws IllegalMovmentException{	
 		if(input.equalsIgnoreCase("w")){
-			if(map.substring(charPosition-100, charPosition-100) == "-"){
-                                 throw new IllegalMovmentException();
+			test = map.charAt(charPosition-100);
+                        if(test != control){         
+				throw new IllegalMovmentException();
                         }else{
                                 charPosition-=100;
                                 map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
@@ -62,7 +59,8 @@ public class Dungeon{
 			}
 		}
 		else if(input.equalsIgnoreCase("a")){
-                        if(map.substring(charPosition-1, charPosition-1) == "|"){
+                        test = map.charAt(charPosition-1);
+			if(test != control){
                                  throw new IllegalMovmentException();
 				
                        	}else{
@@ -73,8 +71,8 @@ public class Dungeon{
 				}
 		}
 		else if(input.equalsIgnoreCase("s")){
-                        
-                        if(map.substring(charPosition+100, charPosition+100) == "-"){
+                        test = map.charAt(charPosition + 100);
+                        if(test != control){
                                  throw new IllegalMovmentException();	
                         }else{
 				charPosition+=100;
@@ -84,7 +82,8 @@ public class Dungeon{
 			}
 		}
 		else if(input.equalsIgnoreCase("d")){
-                       if(map.substring(charPosition+1, charPosition+1) == "|"){
+			test = map.charAt(charPosition + 1);
+			if(test != control){
 				 throw new IllegalMovmentException();
 				
                         }else{
