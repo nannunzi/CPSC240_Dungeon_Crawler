@@ -49,14 +49,14 @@ public class Dungeon{
         public void  Move(String input){
                 if(input == "w"){
                         charPosition -= 100;
-                        if(map.substring(0, charPosition) == "-"){
+			System.out.println(map.substring(charPosition));
+			if(map.substring(0, charPosition) == "-"){
                                 charPosition += 100;
-				
+
                         }else{
                                 map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
                                 map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
-                                oldCharPosition = charPosition;
-				}
+                                oldCharPosition = charPosition;}
 		}if(input == "a"){
                         charPosition -= 1;
                         if(map.substring(0, charPosition) == "|"){

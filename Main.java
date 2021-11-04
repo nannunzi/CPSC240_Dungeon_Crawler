@@ -13,10 +13,10 @@ public class Main{
                 switch (choos) {
                         case 1: inventory.print();
                                 break;
-			case 2: while(!(choos.equalsIgnoreCase("q"))){
+			//case 2: while(!(choos.equalsIgnoreCase("q"))){
 
-			}
-                         	break;       
+			//}
+                         //	break;       
                         case 3: inventory.drop();
                                 break;
                         case 4: inventory.equipWeapon();
