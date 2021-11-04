@@ -4,6 +4,7 @@ public class Main{
         Inventory inventory = new Inventory(100);
         ItemGenerator theGen= new ItemGenerator();
         Scanner in = new Scanner(System.in);
+	Dungeon dungeon = new Dungeon();
         int choos=0;
         while(choos!=6){
                 System.out.println("What would you like to do?");
@@ -13,9 +14,17 @@ public class Main{
                 switch (choos) {
                         case 1: inventory.print();
                                 break;
-			case 2: while(!(choos.equalsIgnoreCase("q"))){
-
-			}
+			case 2: System.out.println("input q to exit movement mode");
+				String input=in.nextLine().substring(0,1);
+				while(!(input.equalsIgnoreCase("q"))){
+					  input = in.nextLine().substring(0,1);
+					  try{
+                       			  dungeon.Print();
+                        		  dungeon.Move(input);
+					  }
+					  catch(Dungeon.IllegalMovmentException e)
+					  {}
+                        		  }
                          	break;       
                         case 3: inventory.drop();
                                 break;
@@ -26,22 +35,7 @@ public class Main{
                         case 6: System.out.println("understood, exiting.");
                                 break;
                         default: System.out.println("Invalid command");
-                	Dungeon dungeon = new Dungeon();
-                	String input = "w";
-                	dungeon.Print();
-                	dungeon.Move(input);
-                	dungeon.Print();
-                	dungeon.Move(input);
-                	dungeon.Print();
-                	dungeon.Move(input);
-                	dungeon.Print();
-                	dungeon.Move(input);
-                	dungeon.Print();
-               		 dungeon.Move(input);
-               		 dungeon.Print();
-               		 dungeon.Move(input);
-               		 dungeon.Print();
-	       		}
+			}
 
                 }
         }
