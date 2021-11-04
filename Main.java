@@ -17,11 +17,11 @@ public class Main{
 			case 2: System.out.println("input q to exit movement mode");
 				String input=in.nextLine();
 				while(!(input.equalsIgnoreCase("q"))){
-					  input = in.nextLine();
-					  try{
-                       			  dungeon.Print();
-                        		  dungeon.Move(input);
-					  }
+					dungeon.Print(); 
+					input = in.nextLine();
+					try{
+                        		dungeon.Move(input);
+					}
 					  catch(Dungeon.IllegalMovmentException e)
 					  {}
                         		  }

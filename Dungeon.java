@@ -46,12 +46,13 @@ public class Dungeon{
                 System.out.println(map);
         }
         public void  Move(String input) throws IllegalMovmentException{
-		System.out.println("above : "+ map.substring(charPosition-100, charPosition-99));
-		System.out.println("left : " + map.substring(charPosition-1, charPosition));
-		System.out.println("right : " +map.substring(charPosition+1, charPosition+2));
-		System.out.println("down : " +map.substring(charPosition+100, charPosition+101));
+		System.out.println("above: w"+ map.substring(charPosition-100, charPosition-100));
+		System.out.println("left: a" + map.substring(charPosition-1, charPosition));
+		System.out.println("right: d" +map.substring(charPosition+1, charPosition+1));
+		System.out.println("down: s" +map.substring(charPosition+100, charPosition+100));
+		
 		if(input.equalsIgnoreCase("w")){
-			if(map.substring(charPosition-100, charPosition-99) == "-"){
+			if(map.substring(charPosition-100, charPosition-100) == "-"){
                                  throw new IllegalMovmentException();
                         }else{
                                 charPosition-=100;
@@ -61,7 +62,7 @@ public class Dungeon{
 			}
 		}
 		else if(input.equalsIgnoreCase("a")){
-                        if(map.substring(charPosition-1, charPosition) == "|"){
+                        if(map.substring(charPosition-1, charPosition-1) == "|"){
                                  throw new IllegalMovmentException();
 				
                        	}else{
@@ -73,7 +74,7 @@ public class Dungeon{
 		}
 		else if(input.equalsIgnoreCase("s")){
                         
-                        if(map.substring(charPosition+100, charPosition+101) == "-"){
+                        if(map.substring(charPosition+100, charPosition+100) == "-"){
                                  throw new IllegalMovmentException();	
                         }else{
 				charPosition+=100;
@@ -83,7 +84,7 @@ public class Dungeon{
 			}
 		}
 		else if(input.equalsIgnoreCase("d")){
-                       if(map.substring(charPosition, charPosition+1) == "|"){
+                       if(map.substring(charPosition+1, charPosition+1) == "|"){
 				 throw new IllegalMovmentException();
 				
                         }else{
