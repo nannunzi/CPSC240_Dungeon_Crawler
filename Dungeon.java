@@ -1,6 +1,6 @@
 public class Dungeon{
                 String input = "w";
-
+	static class IllegalMovmentException extends Exception{} 
 
         int charPosition = 607;
         int oldCharPosition = 607;
@@ -46,43 +46,43 @@ public class Dungeon{
         public void Print(){
                 System.out.println(map);
         }
-        public void  Move(String input){
+        public void  Move(String input) throws IllegalMovmentException{
                 if(input == "w"){
-                        charPosition -= 100;
 			System.out.println(map.substring(charPosition));
 			if(map.substring(0, charPosition) == "-"){
-                                charPosition += 100;
+                                throw new IllegalMovmentException();
 
                         }else{
+				charPosition-=100;
                                 map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
                                 map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
                                 oldCharPosition = charPosition;}
 		}if(input == "a"){
-                        charPosition -= 1;
-                        if(map.substring(0, charPosition) == "|"){
-                                charPosition += 1;
+                        if(map.substring(0, charPosition-1) == "|"){
+                                 throw new IllegalMovmentException();
 				
                        	}else{
+				charPosition-=1;
                                 map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
                                 map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
                                 oldCharPosition = charPosition;
 				}
-		}if(input == "a"){
-                        charPosition += 100;
-                        if(map.substring(0, charPosition) == "-"){
-                                charPosition -= 100;
-	
+		}if(input == "s"){
+                        
+                        if(map.substring(0, charPosition+100) == "-"){
+                                 throw new IllegalMovmentException();	
                         }else{
+				charPosition+=100;
                                 map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
                                 map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
                                 oldCharPosition = charPosition;
 			}
 		}if(input == "d"){
-                        charPosition += 1;
-                        if(map.substring(0, charPosition) == "|"){
-                                charPosition -= 1;
+                        if(map.substring(0, charPosition+1) == "|"){
+				 throw new IllegalMovmentException();
 				
                         }else{
+				charPosition+=1;
                                 map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
                                 map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
                                 oldCharPosition = charPosition;
