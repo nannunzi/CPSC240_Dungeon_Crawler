@@ -47,6 +47,10 @@ public class Dungeon{
                 System.out.println(map);
         }
         public void  Move(String input) throws IllegalMovmentException{
+		System.out.println("above : "+ map.substring(charPosition-101, charPosition-100));
+		System.out.println("left : " + map.substring(charPosition-2, charPosition-1));
+		System.out.println("right : " +map.substring(charPosition, charPosition+1));
+		System.out.println("down : " +map.substring(charPosition+99, charPosition+100));
 		if(input == "w"){
 			if(map.substring(charPosition-101, charPosition-100) == "-"){
                                  throw new IllegalMovmentException();
