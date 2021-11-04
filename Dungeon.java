@@ -48,7 +48,7 @@ public class Dungeon{
         }
         public void  Move(String input) throws IllegalMovmentException{
 		if(input == "w"){
-			if(map.substring(0, charPosition-100) == "-"){
+			if(map.substring(charPosition-101, charPosition-100) == "-"){
                                  throw new IllegalMovmentException();
                         }else{
                                 charPosition-=100;
@@ -57,7 +57,7 @@ public class Dungeon{
                                 oldCharPosition = charPosition;
 			}
 		}if(input == "a"){
-                        if(map.substring(0, charPosition-1) == "|"){
+                        if(map.substring(charposition-2, charPosition-1) == "|"){
                                  throw new IllegalMovmentException();
 				
                        	}else{
@@ -68,7 +68,7 @@ public class Dungeon{
 				}
 		}if(input == "s"){
                         
-                        if(map.substring(0, charPosition+100) == "-"){
+                        if(map.substring(charPosition+99, charPosition+100) == "-"){
                                  throw new IllegalMovmentException();	
                         }else{
 				charPosition+=100;
@@ -77,7 +77,7 @@ public class Dungeon{
                                 oldCharPosition = charPosition;
 			}
 		}if(input == "d"){
-                       if(map.substring(0, charPosition+1) == "|"){
+                       if(map.substring(charPosition, charPosition+1) == "|"){
 				 throw new IllegalMovmentException();
 				
                         }else{
