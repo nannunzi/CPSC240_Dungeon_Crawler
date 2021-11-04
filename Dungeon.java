@@ -57,7 +57,7 @@ public class Dungeon{
                                 oldCharPosition = charPosition;
 			}
 		}if(input == "a"){
-                        if(map.substring(charposition-2, charPosition-1) == "|"){
+                        if(map.substring(charPosition-2, charPosition-1) == "|"){
                                  throw new IllegalMovmentException();
 				
                        	}else{
