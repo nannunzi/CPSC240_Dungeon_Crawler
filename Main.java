@@ -9,7 +9,7 @@ public class Main{
         while(choos!=6){
                 System.out.println("What would you like to do?");
                 System.out.println("-----------------------------");
-                System.out.println("1. Print inventory \n2. move\n3. Drop item \n4. Equip Weapon \n5. Equip Armor\n6. Exit");
+                System.out.println("1. Print inventory \n2. Move\n3.Pick up Item\n4. Drop item \n5. Equip Weapon \n6. Equip Armor\n7. Exit");
                 choos = in.nextInt();
                 switch (choos) {
                         case 1: inventory.print();
@@ -25,14 +25,16 @@ public class Main{
 					  catch(Dungeon.IllegalMovmentException e)
 					  {}
                         		  }
-                         	break;       
-                        case 3: inventory.drop();
+                         	break;
+			case 3: inventory.add();
+				break;	
+                        case 4: inventory.drop();
                                 break;
-                        case 4: inventory.equipWeapon();
+                        case 5: inventory.equipWeapon();
                                 break;
-                        case 5: inventory.equipArmor();
+                        case 6: inventory.equipArmor();
                                 break;
-                        case 6: System.out.println("understood, exiting.");
+                        case 7: System.out.println("understood, exiting.");
                                 break;
                         default: System.out.println("Invalid command");
 			}
