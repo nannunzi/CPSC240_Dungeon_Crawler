@@ -1,7 +1,6 @@
 public class Dungeon{
-                String input = "w";
 	static class IllegalMovmentException extends Exception{} 
-
+	private Enemy[] enemies;
         int charPosition = 607;
         int oldCharPosition = 607;
         String playerMarker = "@";
@@ -98,5 +97,6 @@ public class Dungeon{
                 }else{
 			System.out.println("error");
 		}
+		
         }
 }
