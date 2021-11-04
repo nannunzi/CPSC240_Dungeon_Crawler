@@ -47,7 +47,12 @@ public class Inventory{
 		items.remove(choice);
 		
 	}
-
+	public Item getEquippedWeapon(){
+		return this.equippedWeapon;
+	}
+	public Item getEquippedArmor(){
+		return this.equippedArmor;
+	}
 	public void print(){
 		System.out.println("your max weight is: " +this.maxWeight+". Your current weight is: " + this.totalWeight());
 	int count=0;
