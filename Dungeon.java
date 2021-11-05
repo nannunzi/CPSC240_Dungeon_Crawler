@@ -91,7 +91,8 @@ public class Dungeon{
 		if(input.equalsIgnoreCase("w")){
 			test = map.charAt(this.charPosition-100);
                         if(test != control){         
-				Look(test);	
+				Look(test);
+				throw new IllegalMovmentException();	
                         }else{
                                 charPosition-=100;
                                 map = map.substring(0, this.charPosition) + playerMarker + map.substring(this.charPosition +1);
@@ -102,7 +103,8 @@ public class Dungeon{
 		else if(input.equalsIgnoreCase("a")){
                         test = map.charAt(charPosition-1);
 			if(test != control){
-                                Look(test);				
+                                Look(test);
+				throw new IllegalMovmentException();	
                        	}else{
 				charPosition-=1;
                                 map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
@@ -113,7 +115,8 @@ public class Dungeon{
 		else if(input.equalsIgnoreCase("s")){
                         test = map.charAt(charPosition + 100);
                         if(test != control){
-                                Look(test); 
+                                Look(test);
+				throw new IllegalMovmentException();
                         }else{
 				charPosition+=100;
                                 map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
@@ -124,7 +127,8 @@ public class Dungeon{
 		else if(input.equalsIgnoreCase("d")){
 			test = map.charAt(charPosition + 1);
 			if(test != control){
-				Look(test);				
+				Look(test);
+				throw new IllegalMovmentException();	
                         }else{
 				charPosition+=1;
                                 map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
@@ -143,8 +147,7 @@ public class Dungeon{
 			//Main.inventory.add();
 		}else if(test == enemy){
 			//attack
-		}else{
-			throw new IllegalMovmentException();
+			
 		}
 	}
 }
