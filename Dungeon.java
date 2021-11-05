@@ -4,10 +4,16 @@ public class Dungeon{
 	private Enemy enemyB;
 	private static ItemGenerator theGen= new ItemGenerator();
 	private Character acter;
-       	private  int charPosition = 607;
-        private int oldCharPosition = 607;
-        String playerMarker = "@";
-        //Map Key
+	private Item item1;
+	private Item item2;
+       	private  int charPosition; //= 607;
+        private int oldCharPosition; //= 607;
+	private int i1Pos;
+	private int i2Pos;
+	private boolean pick1;
+	private boolean pick2;
+        static char playerMarker = '@';
+	//Map Key
         //@ = player
         //? = Item
         //! = Enemy
@@ -47,6 +53,7 @@ public class Dungeon{
 	static char item = key.charAt(1);
 	static char enemy = key.charAt(2);
 	
+	
 
 	public Dungeon(Character c, Enemy e, Enemy b){
 		this.acter=c;
@@ -54,9 +61,44 @@ public class Dungeon{
 		this.enemyA=e;
 		this.enemyB=b;
 		this.map=map;
+		this.item1= theGen.generate();
+		this.item2= theGen.generate();
+		this.i1Pos= 1980;
+		this.i2Pos= 406;
+	 	this.pick1=false;
+		this.pick2=false;
 	}
-	public void Print(){
-                System.out.println(map);
+	public void Print()
+	{
+		String newMap="";
+		 for (int i = 0; i < this.map.length(); i++) {
+ 			char curChar= this.map.charAt(i);
+			if (i==this.acter.getPosition()){
+				curChar=playerMarker;
+			}
+			else if (i==this.enemyA.getPosition())
+			{
+				curChar=enemy;
+			}
+			else if (i==this.i2Pos){
+				if(!(this.pick2)){
+				 curChar=item;
+				}
+			}
+			else if(i==this.i1Pos){
+				if(!(this.pick1)){
+				 curChar=item;
+				}
+			}
+			else if (i==this.enemyB.getPosition()){
+				curChar=enemy;
+			}
+			newMap+=curChar;
+
+				
+        }
+		this.map=newMap;
+                System.out.println(this.map);
         }
         public void  Move(String input) throws IllegalMovmentException{	
 		char test;
@@ -192,7 +234,9 @@ public class Dungeon{
 			System.out.println("but theres nothing there");
 		}
 		if(test == item){
+
 			Item addIt= theGen.generate();
+			//need to have a step here where the player can choose to pick it up
 			this.acter.pickup(addIt);
 		}else if(test == enemy){
 			//for later
