@@ -16,7 +16,7 @@ public class Enemy{
 		this.damage=d;
 		this.name=n;
 		this.position = p;
-		canMove=true;
+		this.canMove=true;
 		this.rng= new Random();
 	}
 	public int getHealth(){
@@ -30,6 +30,13 @@ public class Enemy{
 	}
 	public int getPosition(){
 		return this.position;
+	}
+	public boolean getCanMove(){
+		return this.canMove;
+	}
+	public void setPosition(int p)
+	{
+		this.position=p;
 	}
 	public String  move(){
 		//instantiate random, implement random movement

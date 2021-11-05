@@ -2,11 +2,11 @@ import java.util.Scanner;
 public class Main{
         public static void main(String[] args){
         Inventory inventory = new Inventory(100);
-        ItemGenerator theGen= new ItemGenerator();
+	Character boio = new Character(inventory, "the great player", 100, 607); 
         Scanner in = new Scanner(System.in);
 	Enemy e1= new Enemy(EnemyType.Orc, 100, 10, "Basic Orc", 500);
 	Enemy e2= new Enemy(EnemyType.Goblin, 50, 15, "Basic Goblin", 700);	
-	Dungeon dungeon = new Dungeon();
+	Dungeon dungeon = new Dungeon(boio, e1, e2);
         int choos=0;
         while(choos!=6){
                 System.out.println("What would you like to do?");
@@ -25,7 +25,12 @@ public class Main{
                         		dungeon.Move(input);
 					}
 					  catch(Dungeon.IllegalMovmentException e){
-						{}
+						{
+							try{
+							dungeon.Look(input);
+							}
+							catch (Dungeon.IllegalMovmentException f){}
+						}
 						
 						
 						}	

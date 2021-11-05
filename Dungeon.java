@@ -2,6 +2,7 @@ public class Dungeon{
 	static class IllegalMovmentException extends Exception{} 
 	private Enemy enemyA;
 	private Enemy enemyB;
+	private static ItemGenerator theGen= new ItemGenerator();
 	private Character acter;
        	private  int charPosition = 607;
         private int oldCharPosition = 607;
@@ -41,11 +42,11 @@ public class Dungeon{
                 "|                                |---|          |--------|                                        |\n"+
                 "|                                |---|?         |--------|                                        |\n"+
                 "---------------------------------------------------------------------------------------------------";
-        String key = " ?!";
-	char control = key.charAt(0);
-	char item = key.charAt(1);
-	char enemy = key.charAt(2);
-	char test;
+        static String key = " ?!";
+	static char control = key.charAt(0);
+	static char item = key.charAt(1);
+	static char enemy = key.charAt(2);
+	static char test;
 
 	public Dungeon(Character c, Enemy e, Enemy b){
 		this.acter=c;
@@ -88,66 +89,159 @@ public class Dungeon{
                 System.out.println(map);
         }
         public void  Move(String input) throws IllegalMovmentException{	
+		try{
+		this.enemyMove(this.enemyA.move(), enemyA);
+		}catch (IllegalMovmentException e){}
+		try{
+		this.enemyMove(this.enemyB.move(), enemyB);
+		}catch(IllegalMovmentException f){}
 		if(input.equalsIgnoreCase("w")){
 			test = map.charAt(this.charPosition-100);
                         if(test != control){         
-				Look(test);
+				//Look(test);
 				throw new IllegalMovmentException();	
                         }else{
-                                charPosition-=100;
+                                this.charPosition-=100;
                                 map = map.substring(0, this.charPosition) + playerMarker + map.substring(this.charPosition +1);
                                 map = map.substring(0, this.oldCharPosition) + " " + map.substring(this.oldCharPosition + 1);
                                 this.oldCharPosition = this.charPosition;
+				this.acter.move(this.charPosition);
 			}
 		}
 		else if(input.equalsIgnoreCase("a")){
                         test = map.charAt(charPosition-1);
 			if(test != control){
-                                Look(test);
+                                //Look(test);
 				throw new IllegalMovmentException();	
                        	}else{
-				charPosition-=1;
-                                map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
-                                map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
-                                oldCharPosition = charPosition;
+				this.charPosition-=1;
+                                map = map.substring(0,this.charPosition) + playerMarker + map.substring(this.charPosition +1);
+                                map = map.substring(0, this.oldCharPosition) + " " + map.substring(this.oldCharPosition + 1);
+                                this.oldCharPosition = this.charPosition;
+				this.acter.move(this.charPosition);
 				}
 		}
 		else if(input.equalsIgnoreCase("s")){
                         test = map.charAt(charPosition + 100);
                         if(test != control){
-                                Look(test);
+                               // Look(test);
 				throw new IllegalMovmentException();
                         }else{
-				charPosition+=100;
-                                map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
-                                map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
-                                oldCharPosition = charPosition;
+				this.charPosition+=100;
+                                map = map.substring(0, this.charPosition) + playerMarker + map.substring(this.charPosition +1);
+                                map = map.substring(0, this.oldCharPosition) + " " + map.substring(this.oldCharPosition + 1);
+                                this.oldCharPosition = this.charPosition;
+				this.acter.move(this.charPosition);
 			}
 		}
 		else if(input.equalsIgnoreCase("d")){
 			test = map.charAt(charPosition + 1);
 			if(test != control){
-				Look(test);
+				//Look(test);
 				throw new IllegalMovmentException();	
                         }else{
-				charPosition+=1;
-                                map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
-                                map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
-                                oldCharPosition = charPosition;
+				this.charPosition+=1;
+                                map = map.substring(0,this.charPosition) + playerMarker + map.substring(this.charPosition +1);
+                                map = map.substring(0, this.oldCharPosition) + " " + map.substring(this.oldCharPosition + 1);
+                                this.oldCharPosition = this.charPosition;
+				this.acter.move(this.charPosition);
 
                         }
+
 
                 }else{
 			System.out.println("error");
 		}
+	}
+		public void enemyMove(String input, Enemy e) throws IllegalMovmentException{	
+                	int enPosition=e.getPosition();
+			int oldEnPosition=e.getPosition();
+			if(input.equalsIgnoreCase("w")){
+                        test = map.charAt(e.getPosition()-100);
+                        if(test != control){
+                                //Look(test);
+                                throw new IllegalMovmentException();
+                        }else{
+                                charPosition-=100;
+                                map = map.substring(0, enPosition) + enemy + map.substring(enPosition +1);
+                                map = map.substring(0, oldEnPosition) + " " + map.substring(oldEnPosition + 1);
+				e.setPosition(enPosition);
+                        }
+                }
+                else if(input.equalsIgnoreCase("a")){
+                        test = map.charAt(enPosition-1);
+                        if(test != control){
+                                //Look(test);
+                                throw new IllegalMovmentException();
+                        }else{
+                                enPosition-=1;
+                                map = map.substring(0, enPosition) + enemy + map.substring(enPosition +1);
+                                map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
+                                e.setPosition(enPosition);
+                                }
+                }
+                else if(input.equalsIgnoreCase("s")){
+                        test = map.charAt(enPosition + 100);
+                        if(test != control){
+                               // Look(test);
+                                throw new IllegalMovmentException();
+                        }else{
+                                enPosition+=100;
+                                map = map.substring(0, enPosition) + enemy + map.substring(enPosition +1);
+                                map = map.substring(0, oldEnPosition) + " " + map.substring(oldEnPosition + 1);
+                                e.setPosition(enPosition);
+                        }
+                }
+                else if(input.equalsIgnoreCase("d")){
+                        test = map.charAt(enPosition + 1);
+                        if(test != control){
+                                //Look(test);
+                                throw new IllegalMovmentException();
+                        }else{
+                                enPosition+=1;
+                                map = map.substring(0, enPosition) + enemy + map.substring(enPosition +1);
+                                map = map.substring(0, oldEnPosition) + " " + map.substring(oldEnPosition + 1);
+                                e.setPosition(enPosition);
+                        }
+                }else{
+                }
 		
-        }public void Look(char test)throws IllegalMovmentException{
+        }public void Look(String eyes)throws IllegalMovmentException{
+		if(eyes.equalsIgnoreCase("a")){
+			test= map.charAt(this.charPosition-1);
+		}
+		else if(eyes.equalsIgnoreCase("s")){
+			test= map.charAt(this.charPosition+100);
+		}
+		else if(eyes.equalsIgnoreCase("w")){
+			test= map.charAt(this.charPosition-100);
+		}
+		else if (eyes.equalsIgnoreCase("d"))
+		{
+			test=map.charAt(this.charPosition+1);
+		}
+		else 
+		{
+			System.out.println("but theres nothing there");
+		}
 		if(test == item){
-			ItemGenerator.generate();
-			//Main.inventory.add();
+			Item addIt= theGen.generate();
+			this.acter.pickup(addIt);
 		}else if(test == enemy){
-			//attack
-			
+			//for later
+			//for(Enemy e: this.enemies){	
+			//check enemy positions, then see which one to attack
+			//}
+			if(enemyA.getPosition()==test){
+				acter.combat(enemyA);
+			}
+			else if (enemyB.getPosition()==test)
+			{
+				acter.combat(enemyB);
+			}
+			else{
+				System.out.println("but theres nobody here");
+			}
 		}
 	}
 }
