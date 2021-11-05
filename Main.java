@@ -23,16 +23,12 @@ public class Main{
                         		dungeon.Move(input);
 					}
 					  catch(Dungeon.IllegalMovmentException e){
-						String dummyItem = "?";
-						char item = dummyItem.charAt(0); 
-						switch (e){
-							case item: ItemGenerator.generate();
-								   inventory.add();
-								   break;
+						{}
+						
 						
 						}	
 					  }
-                        		  }
+                        		  
                          	break;	
                         case 3: inventory.drop();
                                 break;
