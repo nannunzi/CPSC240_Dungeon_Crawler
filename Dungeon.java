@@ -115,7 +115,7 @@ public class Dungeon{
 		if(input.equalsIgnoreCase("w")){
 			test = map.charAt(this.charPosition-100);
                         if(test != control){         
-				//Look(test);
+				Look(test);
 				throw new IllegalMovmentException();	
                         }else{
                                 this.charPosition-=100;
@@ -128,7 +128,7 @@ public class Dungeon{
 		else if(input.equalsIgnoreCase("a")){
                         test = map.charAt(charPosition-1);
 			if(test != control){
-                                //Look(test);
+                                Look(test);
 				throw new IllegalMovmentException();	
                        	}else{
 				this.charPosition-=1;
@@ -141,7 +141,7 @@ public class Dungeon{
 		else if(input.equalsIgnoreCase("s")){
                         test = map.charAt(charPosition + 100);
                         if(test != control){
-                               // Look(test);
+                               	Look(test);
 				throw new IllegalMovmentException();
                         }else{
 				this.charPosition+=100;
@@ -154,7 +154,7 @@ public class Dungeon{
 		else if(input.equalsIgnoreCase("d")){
 			test = map.charAt(charPosition + 1);
 			if(test != control){
-				//Look(test);
+				Look(test);
 				throw new IllegalMovmentException();	
                         }else{
 				this.charPosition+=1;
@@ -224,25 +224,24 @@ public class Dungeon{
                 }else{
                 }
 		
-        }public void Look(String eyes)throws IllegalMovmentException{
-		char test=' ';
-		if(eyes.equalsIgnoreCase("a")){
-			test= map.charAt(this.charPosition-1);
-		}
-		else if(eyes.equalsIgnoreCase("s")){
-			test= map.charAt(this.charPosition+100);
-		}
-		else if(eyes.equalsIgnoreCase("w")){
-			test= map.charAt(this.charPosition-100);
-		}
-		else if (eyes.equalsIgnoreCase("d"))
-		{
-			test=map.charAt(this.charPosition+1);
-		}
-		else 
-		{
-			System.out.println("but theres nothing there");
-		}
+        }public void Look(char test)throws IllegalMovmentException{
+//		if(eyes.equalsIgnoreCase("a")){
+//			test= map.charAt(this.charPosition-1);
+//		}
+//		else if(eyes.equalsIgnoreCase("s")){
+//			test= map.charAt(this.charPosition+100);
+//		}
+//		else if(eyes.equalsIgnoreCase("w")){
+//			test= map.charAt(this.charPosition-100);
+//		}
+//		else if (eyes.equalsIgnoreCase("d"))
+//		{
+//			test=map.charAt(this.charPosition+1);
+//		}
+//		else 
+//		{
+//			System.out.println("but theres nothing there");
+//		}
 		if(test == item){
 
 			Item addIt= theGen.generate();
@@ -252,17 +251,17 @@ public class Dungeon{
 			//for later
 			//for(Enemy e: this.enemies){	
 			//check enemy positions, then see which one to attack
-			//}
+			
 			if(this.map.charAt(enemyA.getPosition())==test){
 				acter.combat(enemyA);
 			}
-			else if (enemyB.getPosition()==test)
-			{
+			else if (enemyB.getPosition()==test){
 				acter.combat(enemyB);
 			}
 			else{
 				System.out.println("but theres nobody here");
 			}
 		}
+		
 	}
 }

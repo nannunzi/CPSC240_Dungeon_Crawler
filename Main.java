@@ -32,10 +32,10 @@ public class Main{
 					}
 					  catch(Dungeon.IllegalMovmentException e){
 						{
-							try{
-							dungeon.Look(input);
-							}
-							catch (Dungeon.IllegalMovmentException f){}
+						//	try{
+						//	dungeon.Look(input);
+						//	}
+						//	catch (Dungeon.IllegalMovmentException f){}
 						}
 						
 						
