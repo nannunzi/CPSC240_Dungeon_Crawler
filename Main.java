@@ -23,9 +23,9 @@ public class Main{
                         		dungeon.Move(input);
 					}
 					  catch(Dungeon.IllegalMovmentException e){
-						String dummyItem = "?"
+						String dummyItem = "?";
 						char item = dummyItem.charAt(0); 
-						switch e{
+						switch (e){
 							case item: ItemGenerator.generate();
 								   inventory.add();
 								   break;
