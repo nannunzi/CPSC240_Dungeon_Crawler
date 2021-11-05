@@ -39,7 +39,7 @@ public class Dungeon{
                 "|                                |---|          |--------|                                        |\n"+
                 "|                                |---|?         |--------|                                        |\n"+
                 "---------------------------------------------------------------------------------------------------";
-        String key = " ?!"
+        String key = " ?!";
 	char control = key.charAt(0);
 	char item = key.charAt(1);
 	char enemy = key.charAt(2);
@@ -67,7 +67,7 @@ public class Dungeon{
 		else if(input.equalsIgnoreCase("a")){
                         test = map.charAt(charPosition-1);
 			if(test != control){
-                                Look(test)
+                                Look(test);
 			       	throw new IllegalMovmentException();
 				
                        	}else{
@@ -110,7 +110,7 @@ public class Dungeon{
         }public void Look(char test){
 		if(test == item){
 			ItemGenerator.generate();
-			inventory.add();
+			//Main.inventory.add();
 		}else if(test == enemy){
 			//attack
 		}
