@@ -1,7 +1,9 @@
 import java.util.Scanner;
 public class Main{
         public static void main(String[] args){
-        Inventory inventory = new Inventory(100);
+        //The story
+	System.out.println("In a cheap spin off of SUPERHOT, where time moves only when you move, there are two enemies that stand in that way of glory! Killing them is easy… catching them is not…");
+	Inventory inventory = new Inventory(100);
 	Character boio = new Character(inventory, "the great player", 100, 607); 
         Scanner in = new Scanner(System.in);
 	Enemy e1= new Enemy(EnemyType.Orc, 100, 10, "Basic Orc", 590);
