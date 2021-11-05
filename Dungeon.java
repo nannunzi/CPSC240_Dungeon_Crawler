@@ -93,6 +93,16 @@ public class Dungeon{
 			else if (i==this.enemyB.getPosition()){
 				curChar=enemy;
 			}
+			else if(this.map.charAt(i) == playerMarker && i != this.acter.getPosition()){
+				curChar = control;
+			}
+			else if(this.map.charAt(i) == enemy && i != this.enemyA.getPosition()){
+                                curChar = control;
+                        }
+			else if(this.map.charAt(i) == enemy && i != this.enemyB.getPosition()){
+                                curChar = control;
+                        }
+			
 			newMap+=curChar;
 
 				
