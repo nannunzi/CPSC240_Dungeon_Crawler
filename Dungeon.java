@@ -1,8 +1,10 @@
 public class Dungeon{
 	static class IllegalMovmentException extends Exception{} 
-	private Enemy[] enemies;
-        int charPosition = 607;
-        int oldCharPosition = 607;
+	private Enemy enemyA;
+	private Enemy enemyB;
+	private Character acter;
+       	private  int charPosition = 607;
+        private int oldCharPosition = 607;
         String playerMarker = "@";
         //Map Key
         //@ = player
@@ -45,22 +47,56 @@ public class Dungeon{
 	char enemy = key.charAt(2);
 	char test;
 
-	public Dungeon(){
-
+	public Dungeon(Character c, Enemy e, Enemy b){
+		this.acter=c;
+		this.charPosition=acter.getPosition();
+		this.enemyA=e;
+		this.enemyB=b;
+		this.map=
+		"---------------------------------------------------------------------------------------------------\n"+
+                "|?                                                                                                |\n"+
+                "|                                                                                            ?    |\n"+
+                "|                                            !                                                    |\n"+
+                "|                                                                                                 |\n"+
+                "|                                                                                                 |\n"+
+                "|      @                                                                                          |\n"+
+                "|                                                                                                 |\n"+
+                "|                                                           !                                     |\n"+
+                "|                                                                                                 |\n"+
+                "|                                                                                                 |\n"+
+                "|                                                                                                 |\n"+
+                "----------------------------------------------------------------------------          -------------\n"+
+                "---------------------------------------------------------------------------|          |------------\n"+
+                "|                                               |--------------------------|          |------------\n"+
+                "|                                          ?    |--------------------------|          |------------\n"+
+                "|                                               |---------------------------          -------------\n"+
+                "|                      ---------------          |--------|                                        |\n"+
+                "|                      |-------------|          |--------|                                   ?    |\n"+
+                "|                      |-------------|          |--------|                                        |\n"+
+                "|                      |-------------|          |--------|                                        |\n"+
+                "|                      |-------------|          ----------                                        |\n"+
+                "|                      |-------------|                                                            |\n"+
+                "|                      |-------------|                                                            |\n"+
+                "|                      |-------------|                                                            |\n"+
+                "|                      --------------|          ----------                                        |\n"+
+                "|                                |---|          |--------|                                        |\n"+
+                "|                                |---|          |--------|                                        |\n"+
+                "|                                |---|?         |--------|                                        |\n"+
+                "---------------------------------------------------------------------------------------------------";
 	}
 	public void Print(){
                 System.out.println(map);
         }
         public void  Move(String input) throws IllegalMovmentException{	
 		if(input.equalsIgnoreCase("w")){
-			test = map.charAt(charPosition-100);
+			test = map.charAt(this.charPosition-100);
                         if(test != control){         
 				Look(test);	
                         }else{
                                 charPosition-=100;
-                                map = map.substring(0, charPosition) + playerMarker + map.substring(charPosition +1);
-                                map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
-                                oldCharPosition = charPosition;
+                                map = map.substring(0, this.charPosition) + playerMarker + map.substring(this.charPosition +1);
+                                map = map.substring(0, this.oldCharPosition) + " " + map.substring(this.oldCharPosition + 1);
+                                this.oldCharPosition = this.charPosition;
 			}
 		}
 		else if(input.equalsIgnoreCase("a")){
@@ -101,7 +137,7 @@ public class Dungeon{
 			System.out.println("error");
 		}
 		
-        }public void Look(char test){
+        }public void Look(char test)throws IllegalMovmentException{
 		if(test == item){
 			ItemGenerator.generate();
 			//Main.inventory.add();

@@ -4,6 +4,8 @@ public class Main{
         Inventory inventory = new Inventory(100);
         ItemGenerator theGen= new ItemGenerator();
         Scanner in = new Scanner(System.in);
+	Enemy e1= new Enemy(EnemyType.Orc, 100, 10, "Basic Orc", 500);
+	Enemy e2= new Enemy(EnemyType.Goblin, 50, 15, "Basic Goblin", 700);	
 	Dungeon dungeon = new Dungeon();
         int choos=0;
         while(choos!=6){
