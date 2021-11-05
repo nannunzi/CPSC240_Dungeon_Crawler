@@ -7,6 +7,8 @@ public class Main{
 	Enemy e1= new Enemy(EnemyType.Orc, 100, 10, "Basic Orc", 590);
 	Enemy e2= new Enemy(EnemyType.Goblin, 50, 15, "Basic Goblin", 720);	
 	Dungeon dungeon = new Dungeon(boio, e1, e2);
+	String e1Move;
+	String e2Move;
         int choos=0;
         while(choos!=6){
                 System.out.println("What would you like to do?");
@@ -23,6 +25,10 @@ public class Main{
 					input = in.nextLine();
 					try{
                         		dungeon.Move(input);
+					e1Move = e1.move();
+					e2Move = e2.move();
+					dungeon.enemyMove(e1Move, e1);
+					dungeon.enemyMove(e2Move, e2);
 					}
 					  catch(Dungeon.IllegalMovmentException e){
 						{
