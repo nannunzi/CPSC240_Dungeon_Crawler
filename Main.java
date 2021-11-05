@@ -22,19 +22,25 @@ public class Main{
 					try{
                         		dungeon.Move(input);
 					}
-					  catch(Dungeon.IllegalMovmentException e)
-					  {}
+					  catch(Dungeon.IllegalMovmentException e){
+						String dummyItem = "?"
+						char item = dummyItem.charAt(0); 
+						switch e{
+							case item: ItemGenerator.generate();
+								   inventory.add();
+								   break;
+						
+						}	
+					  }
                         		  }
-                         	break;
-			case 3: inventory.add();
-				break;	
-                        case 4: inventory.drop();
+                         	break;	
+                        case 3: inventory.drop();
                                 break;
-                        case 5: inventory.equipWeapon();
+                        case 4: inventory.equipWeapon();
                                 break;
-                        case 6: inventory.equipArmor();
+                        case 5: inventory.equipArmor();
                                 break;
-                        case 7: System.out.println("understood, exiting.");
+                        case 6: System.out.println("understood, exiting.");
                                 break;
                         default: System.out.println("Invalid command");
 			}
