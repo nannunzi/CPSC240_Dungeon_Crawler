@@ -46,7 +46,7 @@ public class Dungeon{
 	static char control = key.charAt(0);
 	static char item = key.charAt(1);
 	static char enemy = key.charAt(2);
-	static char test;
+	
 
 	public Dungeon(Character c, Enemy e, Enemy b){
 		this.acter=c;
@@ -55,24 +55,24 @@ public class Dungeon{
 		this.enemyB=b;
 		this.map=
 		"---------------------------------------------------------------------------------------------------\n"+
-                "|?                                                                                                |\n"+
-                "|                                                                                            ?    |\n"+
-                "|                                            !                                                    |\n"+
+                "|                                                                                                 |\n"+
+                "|                                                                                                 |\n"+
+                "|                                                                                                 |\n"+
                 "|                                                                                                 |\n"+
                 "|                                                                                                 |\n"+
                 "|      @                                                                                          |\n"+
                 "|                                                                                                 |\n"+
-                "|                                                           !                                     |\n"+
+                "|                                                                                                 |\n"+
                 "|                                                                                                 |\n"+
                 "|                                                                                                 |\n"+
                 "|                                                                                                 |\n"+
                 "----------------------------------------------------------------------------          -------------\n"+
                 "---------------------------------------------------------------------------|          |------------\n"+
                 "|                                               |--------------------------|          |------------\n"+
-                "|                                          ?    |--------------------------|          |------------\n"+
+                "|                                               |--------------------------|          |------------\n"+
                 "|                                               |---------------------------          -------------\n"+
                 "|                      ---------------          |--------|                                        |\n"+
-                "|                      |-------------|          |--------|                                   ?    |\n"+
+                "|                      |-------------|          |--------|                                        |\n"+
                 "|                      |-------------|          |--------|                                        |\n"+
                 "|                      |-------------|          |--------|                                        |\n"+
                 "|                      |-------------|          ----------                                        |\n"+
@@ -82,7 +82,7 @@ public class Dungeon{
                 "|                      --------------|          ----------                                        |\n"+
                 "|                                |---|          |--------|                                        |\n"+
                 "|                                |---|          |--------|                                        |\n"+
-                "|                                |---|?         |--------|                                        |\n"+
+                "|                                |---|          |--------|                                        |\n"+
                 "---------------------------------------------------------------------------------------------------";
 	}
 	public void Print(){
@@ -95,6 +95,7 @@ public class Dungeon{
 		try{
 		this.enemyMove(this.enemyB.move(), enemyB);
 		}catch(IllegalMovmentException f){}
+		char test;
 		if(input.equalsIgnoreCase("w")){
 			test = map.charAt(this.charPosition-100);
                         if(test != control){         
@@ -154,16 +155,17 @@ public class Dungeon{
 		}
 	}
 		public void enemyMove(String input, Enemy e) throws IllegalMovmentException{	
-                	int enPosition=e.getPosition();
+                	char test;
+			int enPosition=e.getPosition();
 			int oldEnPosition=e.getPosition();
 			if(input.equalsIgnoreCase("w")){
-                        test = map.charAt(e.getPosition()-100);
+                        test = map.charAt(enPosition-100);
                         if(test != control){
                                 //Look(test);
                                 throw new IllegalMovmentException();
                         }else{
                                 charPosition-=100;
-                                map = map.substring(0, enPosition) + enemy + map.substring(enPosition +1);
+                                map = map.substring(0, enPosition) + '!' + map.substring(enPosition +1);
                                 map = map.substring(0, oldEnPosition) + " " + map.substring(oldEnPosition + 1);
 				e.setPosition(enPosition);
                         }
@@ -175,8 +177,8 @@ public class Dungeon{
                                 throw new IllegalMovmentException();
                         }else{
                                 enPosition-=1;
-                                map = map.substring(0, enPosition) + enemy + map.substring(enPosition +1);
-                                map = map.substring(0, oldCharPosition) + " " + map.substring(oldCharPosition + 1);
+                                map = map.substring(0, enPosition) + '!' + map.substring(enPosition +1);
+                                map = map.substring(0, oldEnPosition) + " " + map.substring(oldEnPosition + 1);
                                 e.setPosition(enPosition);
                                 }
                 }
@@ -187,7 +189,7 @@ public class Dungeon{
                                 throw new IllegalMovmentException();
                         }else{
                                 enPosition+=100;
-                                map = map.substring(0, enPosition) + enemy + map.substring(enPosition +1);
+                                map = map.substring(0, enPosition) + '!' + map.substring(enPosition +1);
                                 map = map.substring(0, oldEnPosition) + " " + map.substring(oldEnPosition + 1);
                                 e.setPosition(enPosition);
                         }
@@ -199,7 +201,7 @@ public class Dungeon{
                                 throw new IllegalMovmentException();
                         }else{
                                 enPosition+=1;
-                                map = map.substring(0, enPosition) + enemy + map.substring(enPosition +1);
+                                map = map.substring(0, enPosition) + '!' + map.substring(enPosition +1);
                                 map = map.substring(0, oldEnPosition) + " " + map.substring(oldEnPosition + 1);
                                 e.setPosition(enPosition);
                         }
@@ -207,6 +209,7 @@ public class Dungeon{
                 }
 		
         }public void Look(String eyes)throws IllegalMovmentException{
+		char test=' ';
 		if(eyes.equalsIgnoreCase("a")){
 			test= map.charAt(this.charPosition-1);
 		}
