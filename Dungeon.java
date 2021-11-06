@@ -208,7 +208,7 @@ public class Dungeon{
                 }else{
                 }
 		
-        }public void Look(char test)throws IllegalMovmentException{
+        }public int Look(char test)throws IllegalMovmentException{
 		if(test == item){
 			System.out.println("you found a " + addIt.getName() + "! Do you want to pick it up? y/n");
 			String pickup = scnr.nextLine();
@@ -219,7 +219,7 @@ public class Dungeon{
 
 			}
 			else if(pickup.equalsIgnoreCase("n")){
-			System.out.println("You did not pick up the " +  addIt.getName() +". It disapears!");
+			System.out.println("You did not pick up the " +  addIt.getName() +".");
 			}
 			else{
 				System.out.println("Error, try again");
