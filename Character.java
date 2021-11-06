@@ -25,6 +25,7 @@ public class Character{
 		e.setHealth(e.getHealth()-this.getInventory().getEquippedWeapon().getStrength());
 		System.out.println("you attack the enemy for " + this.getInventory().getEquippedWeapon().getStrength()+" damage.");
 		if (e.getHealth()<=0){
+			System.out.println("you have slain the "+e.getName());
 		e.die();
 		}
 		else{
@@ -32,11 +33,12 @@ public class Character{
 			dam= dam-this.getInventory().getEquippedArmor().getStrength();
 			if (dam>=1)
 			{
+				System.out.println("the " + e.getName()+ " has attacked you for " + dam+ " damage!");
 				this.setHealth(this.getHealth()-dam);
 			}
 			else
 			{
-				//System.out.println("the enemy cant break through your armor!");
+				System.out.println("the enemy cant break through your armor!");
 			}
 		}
 

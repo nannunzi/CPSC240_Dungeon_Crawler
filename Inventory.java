@@ -79,6 +79,12 @@ public class Inventory{
                 
                 
 	}
+	public void setEqWep(Item i){
+		this.equippedWeapon=i;
+	}
+	public void setEqArm(Item a){
+		this.equippedArmor=a;
+	}
 
         public void equipArmor(){
                 int count=0;
