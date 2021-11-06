@@ -125,9 +125,6 @@ public class Dungeon{
 				throw new IllegalMovmentException();	
                         }else{
                                 this.charPosition-=100;
-                               // map = map.substring(0, this.charPosition) + playerMarker + map.substring(this.charPosition +1);
-                               // map = map.substring(0, this.oldCharPosition) + " " + map.substring(this.oldCharPosition + 1);
-                               // this.oldCharPosition = this.charPosition;
 				this.acter.move(this.charPosition);
 			}
 		}
@@ -139,9 +136,6 @@ public class Dungeon{
 				throw new IllegalMovmentException();	
                        	}else{
 				this.charPosition-=1;
-                               // map = map.substring(0,this.charPosition) + playerMarker + map.substring(this.charPosition +1);
-                               // map = map.substring(0, this.oldCharPosition) + " " + map.substring(this.oldCharPosition + 1);
-                                //this.oldCharPosition = this.charPosition;
 				this.acter.move(this.charPosition);
 				}
 		}
@@ -153,9 +147,6 @@ public class Dungeon{
 				throw new IllegalMovmentException();
                         }else{
 				this.charPosition+=100;
-                               // map = map.substring(0, this.charPosition) + playerMarker + map.substring(this.charPosition +1);
-                                //map = map.substring(0, this.oldCharPosition) + " " + map.substring(this.oldCharPosition + 1);
-                                //this.oldCharPosition = this.charPosition;
 				this.acter.move(this.charPosition);
 			}
 		}
@@ -166,9 +157,6 @@ public class Dungeon{
 				throw new IllegalMovmentException();	
                         }else{
 				this.charPosition+=1;
-                                //map = map.substring(0,this.charPosition) + playerMarker + map.substring(this.charPosition +1);
-                                //map = map.substring(0, this.oldCharPosition) + " " + map.substring(this.oldCharPosition + 1);
-                                //this.oldCharPosition = this.charPosition;
 				this.acter.move(this.charPosition);
 
                         }
@@ -184,74 +172,44 @@ public class Dungeon{
 			if(input.equalsIgnoreCase("w")){
                         test = map.charAt(enPosition-100);
                         if(test != control){
-                                //Look(test);
                                 throw new IllegalMovmentException();
                         }else{
                                 enPosition-=100;
-                                //map = map.substring(0, enPosition) + '!' + map.substring(enPosition +1);
-                                //map = map.substring(0, oldEnPosition) + " " + map.substring(oldEnPosition + 1);
 				e.setPosition(enPosition);
                         }
                 }
                 else if(input.equalsIgnoreCase("a")){
                         test = map.charAt(enPosition-1);
                         if(test != control){
-                                //Look(test);
                                 throw new IllegalMovmentException();
                         }else{
                                 enPosition-=1;
-                                //map = map.substring(0, enPosition) + '!' + map.substring(enPosition +1);
-                                //map = map.substring(0, oldEnPosition) + " " + map.substring(oldEnPosition + 1);
                                 e.setPosition(enPosition);
                                 }
                 }
                 else if(input.equalsIgnoreCase("s")){
                         test = map.charAt(enPosition + 100);
                         if(test != control){
-                               // Look(test);
                                 throw new IllegalMovmentException();
                         }else{
                                 enPosition+=100;
-                                //map = map.substring(0, enPosition) + '!' + map.substring(enPosition +1);
-                                //map = map.substring(0, oldEnPosition) + " " + map.substring(oldEnPosition + 1);
                                 e.setPosition(enPosition);
                         }
                 }
                 else if(input.equalsIgnoreCase("d")){
                         test = map.charAt(enPosition + 1);
                         if(test != control){
-                                //Look(test);
+                                
                                 throw new IllegalMovmentException();
                         }else{
                                 enPosition+=1;
-                                //map = map.substring(0, enPosition) + '!' + map.substring(enPosition +1);
-                                //map = map.substring(0, oldEnPosition) + " " + map.substring(oldEnPosition + 1);
                                 e.setPosition(enPosition);
                         }
                 }else{
                 }
 		
         }public void Look(char test)throws IllegalMovmentException{
-//		if(eyes.equalsIgnoreCase("a")){
-//			test= map.charAt(this.charPosition-1);
-//		}
-//		else if(eyes.equalsIgnoreCase("s")){
-//			test= map.charAt(this.charPosition+100);
-//		}
-//		else if(eyes.equalsIgnoreCase("w")){
-//			test= map.charAt(this.charPosition-100);
-//		}
-//		else if (eyes.equalsIgnoreCase("d"))
-//		{
-//			test=map.charAt(this.charPosition+1);
-//		}
-//		else 
-//		{
-//			System.out.println("but theres nothing there");
-//		}
 		if(test == item){
-			
-			//need to find out how to get the item
 			System.out.println("you found a " + addIt.getName() + "! Do you want to pick it up? y/n");
 			String pickup = scnr.nextLine();
 
