@@ -1,7 +1,9 @@
+import java.util.Scanner;
 public class Dungeon{
 	static class IllegalMovmentException extends Exception{} 
 	private Enemy enemyA;
 	private Enemy enemyB;
+	Scanner scnr = new Scanner(System.in);
 	private static ItemGenerator theGen= new ItemGenerator();
 	private Character acter;
 	private Item item1;
@@ -167,7 +169,6 @@ public class Dungeon{
 
 
                 }else{
-			System.out.println("error");
 		}
 	}
 		public void enemyMove(String input, Enemy e) throws IllegalMovmentException{	
@@ -243,10 +244,24 @@ public class Dungeon{
 //			System.out.println("but theres nothing there");
 //		}
 		if(test == item){
-
+			
 			Item addIt= theGen.generate();
-			//need to have a step here where the player can choose to pick it up
-			this.acter.pickup(addIt);
+			System.out.println("you found a " + addIt.getName() + "! Do you want to pick it up? y/n");
+			String pickup = scnr.nextLine();
+
+			if(pickup.equalsIgnoreCase("y")){
+				this.acter.pickup(addIt);
+				System.out.println("You picked up the " addIt.getName() +"!");
+
+			}
+			else if(pickup.equalsIgnoreCase("n")){
+			System.out.println("You did not pick up the " addIt.getName() +". It disapears!");
+			}
+			else{
+				System.out.println("Error, try again");
+				Look(test);
+			}
+
 		}else if(test == enemy){
 			//for later
 			//for(Enemy e: this.enemies){	
