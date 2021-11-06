@@ -49,7 +49,8 @@ public class Dungeon{
                 "|                                |---|          |--------|                                        |\n"+
                 "|                                |---|          |--------|                                        |\n"+
                 "|                                |---|          |--------|                                        |\n"+
-                "---------------------------------------------------------------------------------------------------";
+                "---------------------------------------------------------------------------------------------------\n"+
+		"                                                                                                   ";
         static String key = " ?!";
 	static char control = key.charAt(0);
 	static char item = key.charAt(1);
@@ -105,7 +106,7 @@ public class Dungeon{
 			else if(this.map.charAt(i) == enemy && i != this.enemyB.getPosition()){
                                 curChar = control;
                         }
-			else if(this.map.charAt(i) == item && (this.pick1 || this.pick2)){
+			else if(this.map.charAt(i) == item && (this.pick1 == true || this.pick2 == true)){
                                 curChar = control;	
 			}
 			newMap+=curChar;
@@ -119,9 +120,10 @@ public class Dungeon{
 		char test;
 		int tint;
 		if(input.equalsIgnoreCase("w")){
+			tint=(this.charPosition-100);
 			test = map.charAt(this.charPosition-100);
                         if(test != control){         
-				Look(test);
+				Look(test,tint);
 				throw new IllegalMovmentException();	
                         }else{
                                 this.charPosition-=100;
@@ -132,7 +134,7 @@ public class Dungeon{
 			tint=(this.charPosition-1);
                         test = map.charAt(this.charPosition-1);
 			if(test != control){
-                                Look(test);
+                                Look(test,tint);
 				throw new IllegalMovmentException();	
                        	}else{
 				this.charPosition-=1;
@@ -143,7 +145,7 @@ public class Dungeon{
 			tint=(this.charPosition+100);
                         test = map.charAt(this.charPosition + 100);
                         if(test != control){
-                               	Look(test);
+                               	Look(test,tint);
 				throw new IllegalMovmentException();
                         }else{
 				this.charPosition+=100;
@@ -151,9 +153,10 @@ public class Dungeon{
 			}
 		}
 		else if(input.equalsIgnoreCase("d")){
+			tint = (this.charPosition+1);
 			test = map.charAt(this.charPosition + 1);
 			if(test != control){
-				Look(test);
+				Look(test,tint);
 				throw new IllegalMovmentException();	
                         }else{
 				this.charPosition+=1;
@@ -208,14 +211,35 @@ public class Dungeon{
                 }else{
                 }
 		
-        }public int Look(char test)throws IllegalMovmentException{
+        }public void Look(char test, int tint)throws IllegalMovmentException{
 		if(test == item){
+			Item addIt= null;
+			if(this.i1Pos==tint)
+			{
+				addIt=this.item1;
+			}
+			else if (this.i2Pos==tint){
+				addIt=this.item2;
+			}
+			else{
+				addIt=theGen.generate();
+			}
 			System.out.println("you found a " + addIt.getName() + "! Do you want to pick it up? y/n");
 			String pickup = scnr.nextLine();
-
 			if(pickup.equalsIgnoreCase("y")){
 				this.acter.pickup(addIt);
 				System.out.println("You picked up the " + addIt.getName() +"!");
+				if(addIt==item1){
+				this.pick1=true;
+				this.i1Pos = 2900;
+				}
+				else if (addIt==item2){
+				this.pick2=true;
+				this.i2Pos = 2901;
+				}
+				else{
+					System.out.println("you got this item for free");
+				}
 
 			}
 			else if(pickup.equalsIgnoreCase("n")){
@@ -223,7 +247,7 @@ public class Dungeon{
 			}
 			else{
 				System.out.println("Error, try again");
-				Look(test);
+				Look(test,tint);
 			}
 
 		}else if(test == enemy){
@@ -231,10 +255,10 @@ public class Dungeon{
 			//for(Enemy e: this.enemies){	
 			//check enemy positions, then see which one to attack
 			
-			if(this.map.charAt(enemyA.getPosition())==test){
+			if(enemyA.getPosition()==tint){
 				acter.combat(enemyA);
 			}
-			else if (enemyB.getPosition()==test){
+			else if (enemyB.getPosition()==tint){
 				acter.combat(enemyB);
 			}
 			else{

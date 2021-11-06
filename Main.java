@@ -11,6 +11,7 @@ public class Main{
 	Dungeon dungeon = new Dungeon(boio, e1, e2);
 	String e1Move;
 	String e2Move;
+
         int choos=0;
         while(choos!=6){
                 System.out.println("What would you like to do?");
