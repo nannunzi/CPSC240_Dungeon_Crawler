@@ -21,8 +21,8 @@ public class Dungeon{
         //! = Enemy
         private String map =
                 "---------------------------------------------------------------------------------------------------\n"+
-                "|?                                                                                                |\n"+
-                "|                                                                                            ?    |\n"+
+                "|                                                                                                 |\n"+
+                "|                                                                                                 |\n"+
                 "|                                            !                                                    |\n"+
                 "|                                                                                                 |\n"+
                 "|                                                                                                 |\n"+
@@ -35,10 +35,10 @@ public class Dungeon{
                 "----------------------------------------------------------------------------          -------------\n"+
                 "---------------------------------------------------------------------------|          |------------\n"+
                 "|                                               |--------------------------|          |------------\n"+
-                "|                                          ?    |--------------------------|          |------------\n"+
+                "|                                               |--------------------------|          |------------\n"+
                 "|                                               |---------------------------          -------------\n"+
                 "|                      ---------------          |--------|                                        |\n"+
-                "|                      |-------------|          |--------|                                   ?    |\n"+
+                "|                      |-------------|          |--------|                                        |\n"+
                 "|                      |-------------|          |--------|                                        |\n"+
                 "|                      |-------------|          |--------|                                        |\n"+
                 "|                      |-------------|          ----------                                        |\n"+
@@ -48,7 +48,7 @@ public class Dungeon{
                 "|                      --------------|          ----------                                        |\n"+
                 "|                                |---|          |--------|                                        |\n"+
                 "|                                |---|          |--------|                                        |\n"+
-                "|                                |---|?         |--------|                                        |\n"+
+                "|                                |---|          |--------|                                        |\n"+
                 "---------------------------------------------------------------------------------------------------";
         static String key = " ?!";
 	static char control = key.charAt(0);
@@ -70,6 +70,7 @@ public class Dungeon{
 	 	this.pick1=false;
 		this.pick2=false;
 	}
+
 	public void Print()
 	{
 		String newMap="";
@@ -104,7 +105,9 @@ public class Dungeon{
 			else if(this.map.charAt(i) == enemy && i != this.enemyB.getPosition()){
                                 curChar = control;
                         }
-			
+			else if(this.map.charAt(i) == item && (this.pick1 || this.pick2)){
+                                curChar = control;	
+			}
 			newMap+=curChar;
 
 				
@@ -114,6 +117,7 @@ public class Dungeon{
         }
         public void  Move(String input) throws IllegalMovmentException{	
 		char test;
+		int tint;
 		if(input.equalsIgnoreCase("w")){
 			test = map.charAt(this.charPosition-100);
                         if(test != control){         
@@ -128,7 +132,8 @@ public class Dungeon{
 			}
 		}
 		else if(input.equalsIgnoreCase("a")){
-                        test = map.charAt(charPosition-1);
+			tint=(this.charPosition-1);
+                        test = map.charAt(this.charPosition-1);
 			if(test != control){
                                 Look(test);
 				throw new IllegalMovmentException();	
@@ -141,7 +146,8 @@ public class Dungeon{
 				}
 		}
 		else if(input.equalsIgnoreCase("s")){
-                        test = map.charAt(charPosition + 100);
+			tint=(this.charPosition+100);
+                        test = map.charAt(this.charPosition + 100);
                         if(test != control){
                                	Look(test);
 				throw new IllegalMovmentException();
@@ -154,7 +160,7 @@ public class Dungeon{
 			}
 		}
 		else if(input.equalsIgnoreCase("d")){
-			test = map.charAt(charPosition + 1);
+			test = map.charAt(this.charPosition + 1);
 			if(test != control){
 				Look(test);
 				throw new IllegalMovmentException();	
@@ -245,7 +251,7 @@ public class Dungeon{
 //		}
 		if(test == item){
 			
-			Item addIt= theGen.generate();
+			//need to find out how to get the item
 			System.out.println("you found a " + addIt.getName() + "! Do you want to pick it up? y/n");
 			String pickup = scnr.nextLine();
 
