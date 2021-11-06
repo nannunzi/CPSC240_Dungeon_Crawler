@@ -251,11 +251,11 @@ public class Dungeon{
 
 			if(pickup.equalsIgnoreCase("y")){
 				this.acter.pickup(addIt);
-				System.out.println("You picked up the " addIt.getName() +"!");
+				System.out.println("You picked up the " + addIt.getName() +"!");
 
 			}
 			else if(pickup.equalsIgnoreCase("n")){
-			System.out.println("You did not pick up the " addIt.getName() +". It disapears!");
+			System.out.println("You did not pick up the " +  addIt.getName() +". It disapears!");
 			}
 			else{
 				System.out.println("Error, try again");
