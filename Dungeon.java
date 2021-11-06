@@ -231,11 +231,17 @@ public class Dungeon{
 				System.out.println("You picked up the " + addIt.getName() +"!");
 				if(addIt==item1){
 				this.pick1=true;
+<<<<<<< HEAD
 				this.i1Pos = 2900;
 				}
 				else if (addIt==item2){
 				this.pick2=true;
 				this.i2Pos = 2901;
+=======
+				}
+				else if (addIt==item2){
+				this.pick2=true;
+>>>>>>> 3ec7eeefd0c08b8e362ae78f16b6ef1b1f3f0f45
 				}
 				else{
 					System.out.println("you got this item for free");
