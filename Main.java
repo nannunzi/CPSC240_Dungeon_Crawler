@@ -19,7 +19,7 @@ public class Main{
 	String e2Move;
 
         int choos=0;
-        while(choos!=6){
+        while(choos!=6&& boio.getHealth()>1){
                 System.out.println("What would you like to do?");
                 System.out.println("-----------------------------");
                 System.out.println("1. Print inventory \n2. Move\n3. Drop item \n4. Equip Weapon \n5. Equip Armor\n6. Exit");
@@ -58,12 +58,13 @@ public class Main{
                                 break;
                         case 5: inventory.equipArmor();
                                 break;
-                        case 6: System.out.println("understood, exiting.");
+                        case 6: System.out.println("Death is the only escape.");
                                 break;
                         default: System.out.println("Invalid command");
 			}
 
                 }
+	System.out.println("you died. likely by your own hand because GOSH is this easy");
         }
 }
            
